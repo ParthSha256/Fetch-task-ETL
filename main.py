@@ -1,3 +1,19 @@
+'''
+Decisions that I made : 
+--> I used the boto3 library of AWS SQS to read the messages from the queue.
+
+--> I used the queue data structure for the processing of messages and loading it on the desired platform.
+
+--> I masked the PII data with one way hash function SHA256. Duplicates can be identified by  matching the strings of the hash.
+
+--> I used the psycopg2 library to connect and write to the postgres.
+
+--> The most important decision I made which is based on assumption about the version number being major.minor.patch model
+    and I used it for converting it into integer.
+    
+--> The last decision I made is also based on an assumption about the data to be of specific kind.
+ 
+'''
 # importing libraries to use in the script
 
 import boto3  # Importing boto3 library to interact with AWS
