@@ -1,0 +1,34 @@
+Questions : 
+
+Question 1 : How would you deploy this application in production?
+
+Answer : I would use Docker to containerize this application, generate an image, 
+	 and submit it to a container registry (like Docker Hub or Amazon ECR) in order to deploy it in production. 
+         Then, to handle scalability, load balancing, and monitoring, I would deploy the containers using an 
+         orchestration platform like Kubernetes or Amazon ECS.
+
+Question 2 :  What other components would you want to add to make this production ready?
+
+Answer : To maintain data reliability and integrity in a production environment, I would need to incorporate error handling, logging, monitoring, and retry procedures. 
+         I might also include authentication and authorisation for SQS and the Postgres database.
+         I may use a message queuing system (like RabbitMQ or Apache Kafka) to efficiently handle high message volumes and decouple the components.
+
+Question 3 : How can this application scale with a growing dataset.
+
+Answer : Through the use of container orchestration solutions like Kubernetes or Amazon ECS, this application can scale to handle a rising dataset. 
+         These tools allows to set the number of container instances to scale automatically dependent on the rate of incoming messages. 
+         To parallelize the processing of messages from the SQS queue, more workers could be utilized.
+
+Question 4 : How can PII be recovered later on?
+
+Answer : Since this approach uses one-way hash algorithms for masking, PII cannot be extracted from the masked data. 
+	 Instead of using one-way hashing, you would need to utilize a reversible encryption technique if the requirement is to recover PII later. 
+	 In order to maintain data privacy, this would necessitate securely maintaining the encryption keys.
+
+Question 5 : What are the assumptions you made?
+
+Answer : The obtained JSON data from the SQS queue is assumed to have the predetermined structure. 
+	 The format of the supplied app_version is "major.minor.patch," and it is always accurate. 
+	 The required user_logins table has also been created, and the Postgres database is operating. 
+	 Finally, this method makes the assumption that SHA256 hashing satisfies the masking condition. 
+	 More elaborate masking techniques can be required depending on the security needs and the sensitivity of the data.
