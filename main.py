@@ -21,6 +21,11 @@ import json  # Importing json to modulate the json data
 import hashlib  # Importing hashlib for masking PII
 import psycopg2  # Importing psycopg2 for connecting and communicating with postgres database
 from datetime import date
+import os
+
+os.environ['AWS_DEFAULT_REGION'] = 'us-east-1'
+os.environ['AWS_ACCESS_KEY_ID'] = 'test'
+os.environ['AWS_SECRET_ACCESS_KEY'] = 'test'
 
 class Fetch_ETL:
     def __init__(self):
